@@ -11,7 +11,7 @@ import 'package:jsonp/jsonp.dart';
 
 main() {
 
-  /// uri could also be an [String]
+  /// uri could also be a [String]
   Uri uri = new Uri(
       scheme: 'http',
       host: 'en.wikipedia.org',
