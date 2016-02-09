@@ -5,24 +5,22 @@ import 'dart:js';
 import 'dart:async';
 
 class Jsonp {
-
   static int _i = 0;
 
-  Future<dynamic> get(dynamic uri){
+  Future<dynamic> get(dynamic uri) async {
     Completer completer = new Completer();
     uri = _createUri(uri);
     context[uri.queryParameters['callback']] = completer.complete;
     ScriptElement script = new ScriptElement();
     script.src = uri.toString();
     document.body.append(script);
-    return completer.future.then((response){
-      script.remove();
-      return response;
-    });
+    final response = await completer.future;
+    script.remove();
+    return response;
   }
 
-  _createUri(dynamic uri){
-    if(!(uri is Uri)){
+  Uri _createUri(dynamic uri) {
+    if (!(uri is Uri)) {
       uri = Uri.parse(uri);
     }
 

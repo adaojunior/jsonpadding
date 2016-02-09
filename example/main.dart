@@ -1,7 +1,6 @@
 import 'package:jsonp/jsonp.dart';
 
 main() {
-
   /// uri could also be an [String]
   Uri uri = new Uri(
       scheme: 'http',
@@ -11,8 +10,7 @@ main() {
         'search': 'brazil',
         'action': 'opensearch',
         'format': 'json'
-      }
-  );
+      });
 
   jsonp(uri).then(print);
 
