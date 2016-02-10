@@ -12,8 +12,8 @@ main() {
         'format': 'json'
       });
 
-  jsonp(uri).then(print);
+  jsonp(uri).then(print, onError: print);
 
   /// Also available as a class
-  new Jsonp()..get(uri).then(print);
+  new Jsonp()..get(uri).then(print, onError: print);
 }
