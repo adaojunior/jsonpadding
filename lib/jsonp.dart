@@ -10,12 +10,14 @@ class Jsonp {
   Future<dynamic> get(dynamic uri) async {
     Completer completer = new Completer();
     uri = _createUri(uri);
-    context[uri.queryParameters['callback']] = completer.complete;
+    String callback = uri.queryParameters['callback'];
+    context[callback] = completer.complete;
     ScriptElement script = new ScriptElement();
     script.src = uri.toString();
     document.body.append(script);
     final response = await completer.future;
     script.remove();
+    context.deleteProperty(callback);
     return response;
   }
 
