@@ -25,17 +25,7 @@ class JsonpCall {
       completer.completeError('Failed to load $uri');
     });
     document.body.append(script);
-    return completer.future.then(_onValue, onError: _onError);
-  }
-
-  dynamic _onValue(dynamic data) {
-    _cleanup();
-    return data;
-  }
-
-  Future _onError(e) {
-    _cleanup();
-    return new Future.error(e);
+    return completer.future.whenComplete(_cleanup);
   }
 
   void _cleanup() {
