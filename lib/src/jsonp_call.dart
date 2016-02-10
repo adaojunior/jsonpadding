@@ -33,7 +33,7 @@ class JsonpCall {
     return data;
   }
 
-  dynamic _onError(e) {
+  Future _onError(e) {
     _cleanup();
     return new Future.error(e);
   }

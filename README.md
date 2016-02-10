@@ -1,4 +1,4 @@
-# jsonp
+# jsonpadding
 
 A jsonp library for Dart.
 
@@ -7,7 +7,7 @@ A jsonp library for Dart.
 A simple usage example:
 
 ```dart
-import 'package:jsonp/jsonp.dart';
+import 'package:jsonpadding/jsonpadding.dart';
 
 main() {
 
@@ -29,8 +29,3 @@ main() {
   new Jsonp()..get(uri).then(print);
 }
 ```
-## Features and bugs
-
-Please file feature requests and bugs at the [issue tracker][tracker].
-
-[tracker]: http://example.com/issues/replaceme

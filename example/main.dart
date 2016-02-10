@@ -1,4 +1,4 @@
-import 'package:jsonp/jsonp.dart';
+import 'package:jsonpadding/jsonpadding.dart';
 
 main() {
   /// uri could also be an [String]
