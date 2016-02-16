@@ -12,8 +12,10 @@ class JsonpCall {
   final ScriptElement script = new ScriptElement();
   final String callback = _createId();
   Uri uri;
+  String _param = 'callback';
 
-  JsonpCall(dynamic uri) {
+  JsonpCall(dynamic uri, {String param}) {
+    _param = param ?? _param;
     this.uri = _createUri(uri, callback);
   }
 
@@ -36,7 +38,7 @@ class JsonpCall {
   Uri _createUri(dynamic uri, String callback) {
     uri = (uri is Uri) ? uri : Uri.parse(uri);
     Map parameters = new Map.from(uri.queryParameters);
-    parameters['callback'] = callback;
+    parameters[_param] = callback;
     return uri.replace(queryParameters: parameters);
   }
 }
