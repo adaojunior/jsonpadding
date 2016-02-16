@@ -1,8 +1,8 @@
 // Copyright (c) 2016, <your name>. All rights reserved. Use of this source code
 // is governed by a BSD-style license that can be found in the LICENSE file.
+import 'dart:async';
 import 'dart:html';
 import 'dart:js';
-import 'dart:async';
 
 int _requestId = 0;
 
@@ -13,11 +13,15 @@ class JsonpCall {
   final String callback = _createId();
   Uri uri;
   String _param = 'callback';
+  final Duration timeout;
+  Timer _timer;
 
-  JsonpCall(dynamic uri, {String param}) {
+  JsonpCall(dynamic uri, {String param, this.timeout}) {
     _param = param ?? _param;
     this.uri = _createUri(uri, callback);
   }
+
+  bool get hasTimeout => timeout != null;
 
   Future<dynamic> call() {
     Completer completer = new Completer();
@@ -26,11 +30,19 @@ class JsonpCall {
     script.onError.listen((_) {
       completer.completeError('Failed to load $uri');
     });
+
     document.body.append(script);
+
+    if (hasTimeout) {
+      _timer = new Timer(timeout,
+          () => completer.completeError(new TimeoutException(null, timeout)));
+    }
+
     return completer.future.whenComplete(_cleanup);
   }
 
   void _cleanup() {
+    _timer?.cancel();
     script.remove();
     context.deleteProperty(callback);
   }
