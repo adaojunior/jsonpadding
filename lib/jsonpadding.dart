@@ -7,5 +7,10 @@ Future<dynamic> jsonp(dynamic uri, {String param}) =>
     new JsonpCall(uri, param: param).call();
 
 class Jsonp {
-  Future<dynamic> get(dynamic uri, {String param}) => jsonp(uri, param: param);
+  final String param;
+
+  Jsonp({this.param});
+
+  Future<dynamic> get(dynamic uri, {String param}) =>
+      jsonp(uri, param: param ?? this.param);
 }
