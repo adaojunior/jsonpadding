@@ -35,7 +35,7 @@ class JsonpCall {
 
   Uri _createUri(dynamic uri, String callback) {
     uri = (uri is Uri) ? uri : Uri.parse(uri);
-    Map parameters = new Map.from(uri.queryParameters);
+    Map<String, dynamic> parameters = new Map.from(uri.queryParameters);
     parameters['callback'] = callback;
     return uri.replace(queryParameters: parameters);
   }
