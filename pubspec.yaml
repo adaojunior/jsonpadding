@@ -1,10 +1,10 @@
 name: jsonpadding
 description: A Jsonp library for dart
-version: 1.0.0
+version: 1.0.1
 author: Adao Junior
 homepage: https://github.com/adaojunior/jsonp
 environment:
-  sdk: '>=2.0.0-dev.51.0 <2.0.0'
+  sdk: '>=2.0.0-dev.49.0 <2.0.0'
 dev_dependencies:
   test: ^0.12.30
   build_runner: ^0.8.8
