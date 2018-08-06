@@ -9,10 +9,10 @@ A simple usage example:
 ```dart
 import 'package:jsonpadding/jsonpadding.dart';
 
-main() {
+void main() {
 
   /// uri could also be a [String]
-  Uri uri = new Uri(
+  Uri uri = Uri(
       scheme: 'http',
       host: 'en.wikipedia.org',
       path: 'w/api.php',
@@ -26,6 +26,6 @@ main() {
   jsonp(uri).then(print);
 
   /// Also available as a class
-  new Jsonp()..get(uri).then(print);
+  Jsonp()..get(uri).then(print);
 }
 ```
