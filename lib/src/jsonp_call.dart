@@ -9,7 +9,7 @@ int _requestId = 0;
 _createId() => '__dart_jsonp__req__${_requestId++}';
 
 class JsonpCall {
-  final ScriptElement script = new ScriptElement();
+  final ScriptElement script = ScriptElement();
   final String callback = _createId();
   Uri uri;
 
@@ -18,7 +18,7 @@ class JsonpCall {
   }
 
   Future<dynamic> call() {
-    Completer completer = new Completer();
+    Completer completer = Completer();
     context[callback] = completer.complete;
     script.src = uri.toString();
     script.onError.listen((_) {
@@ -35,7 +35,7 @@ class JsonpCall {
 
   Uri _createUri(dynamic uri, String callback) {
     uri = (uri is Uri) ? uri : Uri.parse(uri);
-    Map<String, dynamic> parameters = new Map.from(uri.queryParameters);
+    Map<String, dynamic> parameters = Map.from(uri.queryParameters);
     parameters['callback'] = callback;
     return uri.replace(queryParameters: parameters);
   }

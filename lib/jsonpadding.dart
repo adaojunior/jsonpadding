@@ -3,7 +3,7 @@
 import 'src/jsonp_call.dart';
 import 'dart:async';
 
-Future<dynamic> jsonp(dynamic uri) => new JsonpCall(uri).call();
+Future<dynamic> jsonp(dynamic uri) => JsonpCall(uri).call();
 
 class Jsonp {
   Future<dynamic> get(dynamic uri) => jsonp(uri);
